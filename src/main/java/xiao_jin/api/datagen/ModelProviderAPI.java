@@ -15,35 +15,42 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock;
-import static xiao_jin.api.XiaoJinAPI.MOD_ID;
-import static xiao_jin.api.create.CreateItem.EXAMPLE_ITEM;
 
 /**
  * 数据生成器-模型
+ *
  * @author 尽
  * @apiNote 提供方块和物品的模型生成
  */
-public class DatagenModelProvider extends ModelProvider {
-    public DatagenModelProvider(PackOutput output) {
-        super(output, MOD_ID);
-    }
-
-    /**
-     * 注册模型
-     */
-    @Override
-    protected void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
-//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
-//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
-        CreateRegularItemModel(itemModels, EXAMPLE_ITEM.asItem());
+public abstract class ModelProviderAPI extends ModelProvider {
+    public ModelProviderAPI(PackOutput output, String modId) {
+        super(output, modId);
     }
 
     /**
      * 创建普通模型
      * <p>完整六面模型 方块和物品
      */
-    public static void CreateRegular(BlockModelGenerators blockModels, Block block){
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, TexturedModel.CUBE.create(block, blockModels.modelOutput)));
+    public static void createRegular(BlockModelGenerators blockModels, Block block) {
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block,
+                getResourceLocation(blockModels, TexturedModel.CUBE, block)));
+    }
+
+    /**
+     * 创建原木类方块模型
+     */
+    public static void createRotatedPillar(BlockModelGenerators blockModels, Block block) {
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(block,
+                getResourceLocation(blockModels, TexturedModel.COLUMN_ALT, block),
+                getResourceLocation(blockModels, TexturedModel.COLUMN_HORIZONTAL_ALT, block)
+        ));
+    }
+
+    /**
+     * 获取模型路径
+     */
+    public static ResourceLocation getResourceLocation(BlockModelGenerators blockModels, TexturedModel.Provider model, Block block) {
+        return model.create(block, blockModels.modelOutput);
     }
 
     /**
@@ -55,7 +62,7 @@ public class DatagenModelProvider extends ModelProvider {
      *
      * @param particleTexture 纹理路径（例：XiaojinModMain.prefix("example_block")）
      */
-    public static void CreateRegular(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block block, ResourceLocation particleTexture) {
+    public static void createRegular(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block block, ResourceLocation particleTexture) {
         // 模型模板
         ModelTemplate modelTemplate = ModelTemplates.CUBE_ALL;
         // 注册方块模型
@@ -83,14 +90,24 @@ public class DatagenModelProvider extends ModelProvider {
     /**
      * 创建六面相同方块模型
      */
-    public static void CreateRegularBlockModel(BlockModelGenerators blockModels, Block block){
+    public static void CreateRegularBlockModel(BlockModelGenerators blockModels, Block block) {
         blockModels.createTrivialCube(block);
     }
 
     /**
      * 创建普通物品模型
      */
-    public static void CreateRegularItemModel(ItemModelGenerators itemModels, Item item){
+    public static void CreateRegularItemModel(ItemModelGenerators itemModels, Item item) {
         itemModels.generateFlatItem(item, ModelTemplates.FLAT_ITEM);
     }
+
+    /**
+     * 注册模型
+     */
+    @Override
+    protected abstract void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels);
+//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
+//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
+//        CreateRegularItemModel(itemModels, EXAMPLE_ITEM.asItem());
+
 }

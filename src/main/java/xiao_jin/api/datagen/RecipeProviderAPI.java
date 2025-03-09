@@ -8,13 +8,11 @@ import net.minecraft.data.recipes.RecipeProvider;
  * @author 尽
  * @apiNote 配方数据生成器
  */
-public class DatagenRecipeProvider extends RecipeProvider {
-    protected DatagenRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+public abstract class RecipeProviderAPI extends RecipeProvider {
+    protected RecipeProviderAPI(HolderLookup.Provider registries, RecipeOutput output) {
         super(registries, output);
     }
 
     @Override
-    protected void buildRecipes() {
-
-    }
+    protected abstract void buildRecipes();
 }

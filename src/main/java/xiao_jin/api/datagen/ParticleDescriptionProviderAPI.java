@@ -9,13 +9,13 @@ import net.neoforged.neoforge.common.data.ParticleDescriptionProvider;
  * @author 尽
  * @apiNote 粒子数据生成器
  */
-public class DatagenParticleDescriptionProvider extends ParticleDescriptionProvider {
+public abstract class ParticleDescriptionProviderAPI extends ParticleDescriptionProvider {
     /**
      * 创建数据提供程序的实例。
      *
      * @param output 数据生成器输出到的预期根目录
      */
-    protected DatagenParticleDescriptionProvider(PackOutput output) {
+    protected ParticleDescriptionProviderAPI(PackOutput output) {
         super(output);
     }
 
@@ -24,7 +24,5 @@ public class DatagenParticleDescriptionProvider extends ParticleDescriptionProvi
      * 或其中之一 {@link #spriteSet(ParticleType, Iterable) sprite设置方法}.
      */
     @Override
-    protected void addDescriptions() {
-
-    }
+    protected abstract void addDescriptions();
 }
