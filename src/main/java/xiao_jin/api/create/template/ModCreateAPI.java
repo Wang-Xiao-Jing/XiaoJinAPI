@@ -127,7 +127,7 @@ public class ModCreateAPI {
      *
      * @return 注册的方块
      */
-    public Block Block() {
+    public Block block() {
         return block.get();
     }
 
@@ -136,7 +136,7 @@ public class ModCreateAPI {
      *
      * @return 注册的方块物品
      */
-    public BlockItem Item() {
+    public BlockItem item() {
         return blockItem.get();
     }
 }
