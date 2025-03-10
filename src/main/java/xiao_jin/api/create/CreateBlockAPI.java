@@ -71,16 +71,25 @@ public abstract class CreateBlockAPI{
      * @return {@linkplain BlockBehaviour.Properties}
      */
     public static BlockBehaviour.Properties leavesProperties(MapColor color, SoundType sound, float strength) {
+        return leavesProperties(color, sound, strength, strength);
+    }
+
+    /**
+     * 生成一个用于树叶类型方块的属性对象。
+     *
+     * @param sound 声音
+     * @return {@linkplain BlockBehaviour.Properties}
+     */
+    public static BlockBehaviour.Properties leavesProperties(MapColor color, SoundType sound, float destroyTime, float explosionResistance) {
         return ModBlockBehaviour.Properties.of()
                 .mapColor(color)
-                .strength(strength)
+                .strength(destroyTime, explosionResistance)
                 .randomTicks()
                 .sound(sound)
                 .noOcclusion()
                 .isValidSpawn(Blocks::ocelotOrParrot)
                 .isSuffocating(CreateBlockAPI::never)
                 .isViewBlocking(CreateBlockAPI::never)
-                .ignitedByLava()
                 .pushReaction(PushReaction.DESTROY)
                 .isRedstoneConductor(CreateBlockAPI::never);
     }

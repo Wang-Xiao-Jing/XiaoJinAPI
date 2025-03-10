@@ -1,9 +1,5 @@
 package xiao_jin.api.datagen;
 
-/**
- * @author 尽
- * @apiNote 数据生成
- */
 //@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MOD_ID)
 public class DatagenAPI {
 //    @SubscribeEvent
