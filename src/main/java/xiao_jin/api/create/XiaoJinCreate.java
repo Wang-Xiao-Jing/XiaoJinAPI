@@ -1,4 +1,4 @@
-package xiao_jin.api.create.template;
+package xiao_jin.api.create;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -17,7 +17,7 @@ import java.util.function.Function;
  * @author 尽
  * @apiNote 提供方块和对应的物品的同时创建
  */
-public class ModCreateAPI {
+public class XiaoJinCreate {
     public final DeferredBlock<Block> block; // 方块
     public final DeferredItem<BlockItem> blockItem; // 方块物品
 
@@ -96,11 +96,11 @@ public class ModCreateAPI {
      * @param deferredBlocks 方块注册器
      * @param deferredItems 物品注册器
      */
-    public ModCreateAPI(String name,
-                        Function<BlockBehaviour.Properties, ? extends Block> func, BlockBehaviour.Properties props,
-                        Function<Block, ? extends BlockItem> itemFunc,
-                        DeferredRegister.Blocks deferredBlocks,
-                        DeferredRegister.Items deferredItems) {
+    public XiaoJinCreate(String name,
+                         Function<BlockBehaviour.Properties, ? extends Block> func, BlockBehaviour.Properties props,
+                         Function<Block, ? extends BlockItem> itemFunc,
+                         DeferredRegister.Blocks deferredBlocks,
+                         DeferredRegister.Items deferredItems) {
         this.block = createBlock(name, func, props, deferredBlocks);
         this.blockItem = createBlockItem(name, block, itemFunc, deferredItems);
     }
@@ -114,10 +114,10 @@ public class ModCreateAPI {
      * @param deferredBlocks 方块注册器
      * @param deferredItems 物品注册器
      */
-    public ModCreateAPI(String name,
-                        Function<BlockBehaviour.Properties, ? extends Block> func, BlockBehaviour.Properties props,
-                        DeferredRegister.Blocks deferredBlocks,
-                        DeferredRegister.Items deferredItems) {
+    public XiaoJinCreate(String name,
+                         Function<BlockBehaviour.Properties, ? extends Block> func, BlockBehaviour.Properties props,
+                         DeferredRegister.Blocks deferredBlocks,
+                         DeferredRegister.Items deferredItems) {
         this.block = createBlock(name, func, props, deferredBlocks);
         this.blockItem = createBlockItem(name, block, deferredItems);
     }

@@ -14,16 +14,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * @author 尽
- * @apiNote 物品标签数据生成器
+ * 物品标签数据生成器
  */
-public abstract class ItemTagsAPI<T> extends ItemTagsProvider {
-    protected ItemTagsAPI(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags, String modId) {
+public class XiaoJinItemTags<T> extends ItemTagsProvider {
+    protected XiaoJinItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags, String modId) {
         super(output, lookupProvider, blockTags, modId);
     }
 
     @Override
-    protected abstract void addTags(HolderLookup.@NotNull Provider provider);
+    protected void addTags(HolderLookup.@NotNull Provider provider){
+
+    }
     public static TagKey<Item> tag(String name, String modId) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(modId, name));
     }

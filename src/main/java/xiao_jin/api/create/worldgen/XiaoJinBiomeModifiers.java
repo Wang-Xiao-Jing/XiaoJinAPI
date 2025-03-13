@@ -7,7 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-public class BiomeModifiersAPI {
+/** 生物群戏生成 */
+public class XiaoJinBiomeModifiers {
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);

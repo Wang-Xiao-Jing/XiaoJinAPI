@@ -6,14 +6,10 @@ import net.neoforged.fml.ModContainer;
 import java.util.Locale;
 
 public class XiaoJinAPI {
+    static final String MOD_ID = "xiao_jin_api";
     public XiaoJinAPI(IEventBus modEventBus, ModContainer modContainer) {
-//        modEventBus.addListener(CreateCreationModeTabAPI::registerCapabilities);
-////        modEventBus.addListener(DatagenAPI::gatherData);
-//
-//        CreateBlockAPI.BLOCKS.register(modEventBus);
-//        CreateItemAPI.ITEMS.register(modEventBus);
-//        CreateCreationModeTabAPI.CREATIVE_MODE_TABS.register(modEventBus);
     }
+
     /**
      * <p>生成获取资源路径</p>
      * <br/>

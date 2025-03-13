@@ -14,16 +14,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-import static net.minecraft.client.data.models.BlockModelGenerators.createSimpleBlock;
-
 /**
  * 数据生成器-模型
  *
- * @author 尽
  * @apiNote 提供方块和物品的模型生成
  */
-public abstract class ModelProviderAPI extends ModelProvider {
-    public ModelProviderAPI(PackOutput output, String modId) {
+public class XiaoJinModelProvider extends ModelProvider {
+    public XiaoJinModelProvider(PackOutput output, String modId) {
         super(output, modId);
     }
 
@@ -63,41 +60,24 @@ public abstract class ModelProviderAPI extends ModelProvider {
      * @param particleTexture 纹理路径（例：XiaojinModMain.prefix("example_block")）
      */
     public static void createRegular(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block block, ResourceLocation particleTexture) {
-        // 模型模板
         ModelTemplate modelTemplate = ModelTemplates.CUBE_ALL;
-        // 注册方块模型
-        blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.multiVariant(
-                        block, Variant.variant().with(
-                                // 变体
-                                VariantProperties.MODEL,
-                                modelTemplate.create(block,
-                                        TextureMapping.cube(particleTexture),
-                                        blockModels.modelOutput))));
-        // 获取方块对应的物品
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, modelTemplate.create(block, TextureMapping.cube(particleTexture), blockModels.modelOutput))));
         Item chestItem = block.asItem();
-        // 创建物品模型
-        ItemModel.Unbaked unbaked = ItemModelUtils.plainModel(
-                modelTemplate.create(chestItem,
-                        // 纹理槽位
-                        TextureMapping.cube(particleTexture),
-                        // 模型输出路径
-                        blockModels.modelOutput));
-        // 注册物品模型
+        ItemModel.Unbaked unbaked = ItemModelUtils.plainModel(modelTemplate.create(chestItem, TextureMapping.cube(particleTexture), blockModels.modelOutput));
         itemModels.itemModelOutput.accept(chestItem, unbaked);
     }
 
     /**
      * 创建六面相同方块模型
      */
-    public static void CreateRegularBlockModel(BlockModelGenerators blockModels, Block block) {
+    public static void createRegularBlockModel(BlockModelGenerators blockModels, Block block) {
         blockModels.createTrivialCube(block);
     }
 
     /**
      * 创建普通物品模型
      */
-    public static void CreateRegularItemModel(ItemModelGenerators itemModels, Item item) {
+    public static void createRegulaItemModel(ItemModelGenerators itemModels, Item item) {
         itemModels.generateFlatItem(item, ModelTemplates.FLAT_ITEM);
     }
 
@@ -105,9 +85,7 @@ public abstract class ModelProviderAPI extends ModelProvider {
      * 注册模型
      */
     @Override
-    protected abstract void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels);
-//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
-//        CreateRegular(blockModels, EXAMPLE_BLOCK.getBlock());
-//        CreateRegularItemModel(itemModels, EXAMPLE_ITEM.asItem());
+    protected void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
+    }
 
 }

@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * @author 尽
- * @apiNote 进度数据生成器
+ * 进度数据生成器
  */
-public abstract class AdvancementProviderAPI extends AdvancementProvider {
-    public AdvancementProviderAPI(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, List<AdvancementSubProvider> subProviders) {
+public class XiaoJinAdvancementProvider extends AdvancementProvider {
+    public XiaoJinAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, List<AdvancementSubProvider> subProviders) {
         super(output, registries, subProviders);
     }
 }

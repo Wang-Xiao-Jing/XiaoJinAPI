@@ -1,4 +1,4 @@
-package xiao_jin.api.create.template;
+package xiao_jin.api.create;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * 自定义的特殊模型渲染器，用于渲染特定的物品模型。
  * @apiNote 该类实现了 NoDataSpecialModelRenderer 接口，用于渲染不需要额外数据的物品模型。
  */
-public abstract class ModSpecialModelRendererAPI implements NoDataSpecialModelRenderer {
+public class XiaoJinSpecialModelRenderer implements NoDataSpecialModelRenderer {
 
     /**
      * 渲染物品模型
@@ -23,6 +23,8 @@ public abstract class ModSpecialModelRendererAPI implements NoDataSpecialModelRe
      * @param hasFoilType    是否有光泽效果
      */
     @Override
-    public abstract void render(@NotNull ItemDisplayContext displayContext, @NotNull PoseStack poseStack,
-                       @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType);
+    public void render(@NotNull ItemDisplayContext displayContext, @NotNull PoseStack poseStack,
+                       @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType){
+
+    }
 }

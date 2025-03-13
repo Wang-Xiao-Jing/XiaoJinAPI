@@ -13,27 +13,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 /**
- * @author 尽
- * @apiNote 创建一个创造模式物品栏
+ * 创建创造模式物品栏
  */
-public abstract class CreateCreationModeTabAPI extends CreativeModeTabs {
-//    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = getCreativeModeTabs(Registries.CREATIVE_MODE_TAB, MOD_ID);
-//    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BUILDING_BLOCKS = register(
-//            "building_blocks",
-//            CreativeModeTabs.COMBAT,
-//            () -> EXAMPLE_ITEM.get().getDefaultInstance(),
-//            (parameters, output) ->{
-//                    output.accept(EXAMPLE_ITEM);
-//                    output.accept(EXAMPLE_BLOCK.blockItem);
-//            });
-//
-//    /**
-//     * 添加到创造模式物品栏
-//     */
-//    public static void registerCapabilities(BuildCreativeModeTabContentsEvent event) {
-//        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-//            event.accept(EXAMPLE_BLOCK.blockItem);
-//    }
+public class XiaoJinCreateCreationModeTab extends CreativeModeTabs {
 
     public static DeferredRegister<CreativeModeTab> getCreativeModeTabs(ResourceKey<Registry<CreativeModeTab>> registryKey, String modId) {
         return DeferredRegister.create(registryKey, modId);
